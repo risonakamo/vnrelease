@@ -16,7 +16,6 @@ body
 .release
 {
     width: 800px;
-    height: 300px;
 }
 
 .release div
@@ -28,27 +27,18 @@ body
 .release .image
 {
     width: 300px;
-    height: 300px;
-    line-height: 300px;
+    padding-top: 15px;
 }
 
 .release .image img
 {
     width: 100%;
     display: inline-block;
-    vertical-align: middle;
-}
-
-.release .info
-{
-    width: 500px;
-    height: 300px;
 }
 
 .release .title
 {
-    width: 500px;
-    min-height: 100px;
+    width: 100%;
 }
 
 .release .title div
@@ -70,4 +60,19 @@ body
     line-height: 25px;
     font-size: 17px;
     padding-left: 30px !important;
+}
+
+.title .border
+{
+    height: 12px;
+    text-align: center;
+    padding: 0;
+}
+
+.title .border-inside
+{
+    width: 60% !important;
+    height: 12px;
+    padding: 0;
+    border-bottom: 1px solid yellow;
 }
