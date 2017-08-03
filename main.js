@@ -17,11 +17,11 @@ function main()
     // };
     // r.send();
 
-    calHandler.getDay(2017,7,29).then((res)=>{
-        console.log(res);
-    });
+    // calHandler.getDay(2017,7,29).then((res)=>{
+    //     console.log(res);
+    // });
 
-    calHandler.getMonth(2017,7).then((res)=>{
-        console.log(res);
-    });
+    // calHandler.getMonth(2017,7).then((res)=>{
+    //     console.log(res);
+    // });
 }

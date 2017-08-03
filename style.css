@@ -3,4 +3,71 @@
 body
 {
     margin: 0;
+    font-size: 0;
+    font-family: "roboto slab";
+}
+
+.wrap
+{
+    width: 800px;
+    margin: auto;
+}
+
+.release
+{
+    width: 800px;
+    height: 300px;
+}
+
+.release div
+{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.release .image
+{
+    width: 300px;
+    height: 300px;
+    line-height: 300px;
+}
+
+.release .image img
+{
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.release .info
+{
+    width: 500px;
+    height: 300px;
+}
+
+.release .title
+{
+    width: 500px;
+    min-height: 100px;
+}
+
+.release .title div
+{
+    width: 100%;
+    padding-left: 10px;
+}
+
+.title .jp
+{
+    height: 55px;
+    line-height: 55px;
+    font-size: 35px;
+}
+
+.title .en
+{
+    height: 25px;
+    line-height: 25px;
+    font-size: 17px;
+    padding-left: 30px !important;
 }
