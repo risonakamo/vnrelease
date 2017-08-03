@@ -1,10 +1,10 @@
 window.onload=main;
 
-var vnhandler;
+var calHandler;
 
 function main()
 {
-    vnhandler=new _vnHandler();
+    calHandler=new _calHandler();
 
     // var r=new XMLHttpRequest();
     // r.open("GET",_calID+"events?maxResults=1&"+_apiKey);
@@ -17,11 +17,11 @@ function main()
     // };
     // r.send();
 
-    vnhandler.getDay(2017,7,29).then((res)=>{
+    calHandler.getDay(2017,7,29).then((res)=>{
         console.log(res);
     });
 
-    vnhandler.getMonth(2017,7).then((res)=>{
+    calHandler.getMonth(2017,7).then((res)=>{
         console.log(res);
     });
 }
