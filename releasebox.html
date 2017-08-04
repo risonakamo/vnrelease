@@ -1,0 +1,224 @@
+<link rel="import" href="../polymer/polymer/polymer-element.html">
+
+<dom-module id="release-box">
+  <template>
+    <style>
+      :host
+      {
+        width: 800px;
+      }
+
+      div
+      {
+        display: inline-block;
+        vertical-align: top;
+        box-sizing: border-box;
+      }
+
+      .left
+      {
+        width: 300px;
+        height: 360px;
+        /*line-height: 360px;*/
+      }
+
+      .image
+      {
+        width: 300px;
+        /*vertical-align: middle;
+        line-height: initial;*/
+      }
+
+      .image img
+      {
+        width: 100%;
+        display: inline-block;
+      }
+
+      .image .dev-info
+      {
+        width: 100%;
+        height: 33px;
+        line-height: 33px;
+        font-size: 25px;
+        margin-top: 5px;
+        text-align: center;
+        color: white;
+        background-color: blue;
+      }
+
+      .nav
+      {
+        width: 100%;
+        height: 116px;
+      }
+
+      .nav-button
+      {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        margin-right: 10px;
+        text-align: center;
+        font-size: 15px;
+        border: 1px solid yellow;
+        border-radius: 50%;
+      }
+
+      .title
+      {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+
+      .title div
+      {
+        width: 100%;
+        padding-left: 10px;
+      }
+
+      .title .jp
+      {
+        height: 55px;
+        line-height: 55px;
+        font-size: 35px;
+      }
+
+      .title .en
+      {
+        height: 25px;
+        line-height: 25px;
+        font-size: 17px;
+        padding-left: 30px !important;
+      }
+
+      .title .border
+      {
+        height: 12px;
+        text-align: center;
+        padding: 0;
+      }
+
+      .title .border-inside
+      {
+        width: 80% !important;
+        height: 12px;
+        padding: 0;
+        border-bottom: 1px solid yellow;
+      }
+
+      .info
+      {
+        width: 500px;
+        height: 360px;
+        overflow: auto;
+      }
+
+      .info::-webkit-scrollbar
+      {
+        display: none;
+      }
+
+      .info .char-boxes
+      {
+        width: 500px;
+        padding-left: 60px;
+      }
+
+      .info .character
+      {
+        width: 180px;
+        height: 180px;
+        margin-right: 10px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .info .character img
+      {
+        width: 100%;
+      }
+
+      .info .summary
+      {
+        width: 500px;
+        min-height: 360px;
+        font-size: 15px;
+      }
+    </style>
+
+    <div class="title">
+      <div class="jp">お家に帰るまでがましまろです</div>
+      <div class="en">Ouchi ni Kaeru made ga Mashimaro Desu</div>
+      <div class="border">
+        <div class="border-inside"></div>
+      </div>
+    </div>
+
+    <div class="release-info">
+      <div class="left">
+        <div class="image">
+          <img src="https://s.vndb.org/cv/90/31590.jpg">
+          <div class="dev-info">
+            Marmalade
+          </div>
+        </div>
+
+        <div class="nav">
+          <div class="nav-button">
+            chars
+          </div>
+
+          <div class="nav-button">
+            summary
+          </div>
+        </div>
+      </div>
+
+      <div class="info">
+        <div class="char-boxes">
+          <div class="character">
+            <img src="https://s.vndb.org/ch/34/68734.jpg">
+          </div>
+          <div class="character">
+            <img src="https://s.vndb.org/ch/37/68737.jpg">
+          </div>
+          <div class="character">
+            <img src="https://s.vndb.org/ch/36/68736.jpg">
+          </div>
+          <div class="character">
+            <img src="https://s.vndb.org/ch/35/68735.jpg">
+          </div>
+        </div>
+
+        <div class="summary">
+          “Hey, are you all right?”
+
+Kanon held out her hand to Ryou, who had collapsed on the ground in the park. Left without a home after being kicked out, he was taken in by her and given a place to stay in exchange for working at her pâtisserie, “Marshmallow Tree”. The shop had been very popular before she had become the owner, but now it doesn’t get many customers due to a change in opening hours and the arrival of a famous competitor nearby.
+
+He was able to liven up the shop a bit with the help of others, but his relationships with them also got more complicated at the same time. Every day is full of chaos, with unexpected events happening one after the other. What will happen to him and the shop? It is the beginning of sweet and fluffy marshmallow days.
+        </div>
+      </div>
+    </div>
+
+  </template>
+
+  <script>
+    class releaseBox extends Polymer.Element
+    {
+      static get is()
+      {
+        return "release-box";
+      }
+
+      static get properties()
+      {
+        return {
+
+        };
+      }
+    }
+
+    customElements.define(releaseBox.is,releaseBox);
+  </script>
+</dom-module>
