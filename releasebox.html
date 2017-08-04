@@ -44,13 +44,15 @@
         margin-top: 5px;
         text-align: center;
         color: white;
-        background-color: blue;
+        background-color: var(--sub-colour);
       }
 
-      .nav
+      #nav
       {
         width: 100%;
         height: 116px;
+        padding-top: 8px;
+        padding-left: 45px;
       }
 
       .nav-button
@@ -61,8 +63,24 @@
         margin-right: 10px;
         text-align: center;
         font-size: 15px;
-        border: 1px solid yellow;
+        border: 1px solid var(--main-colour);
         border-radius: 50%;
+        background-color: rgba(0,0,0,0);
+        user-select: none;
+        cursor: pointer;
+        transition: background-color,color .2s,.2s;
+      }
+
+      #nav .char,#nav.nav-summ .summ
+      {
+        background-color: var(--main-colour);
+        color: white;
+      }
+
+      #nav.nav-summ .char
+      {
+        background-color: initial;
+        color: initial;
       }
 
       .title
@@ -104,28 +122,28 @@
         width: 80% !important;
         height: 12px;
         padding: 0;
-        border-bottom: 1px solid yellow;
+        border-bottom: 1px solid var(--main-colour);
       }
 
-      .info
+      #info
       {
         width: 500px;
         height: 360px;
         overflow: auto;
       }
 
-      .info::-webkit-scrollbar
+      #info::-webkit-scrollbar
       {
         display: none;
       }
 
-      .info .char-boxes
+      #info .char-boxes
       {
         width: 500px;
         padding-left: 60px;
       }
 
-      .info .character
+      #info .character
       {
         width: 180px;
         height: 180px;
@@ -134,12 +152,12 @@
         overflow: hidden;
       }
 
-      .info .character img
+      #info .character img
       {
         width: 100%;
       }
 
-      .info .summary
+      #info .summary
       {
         width: 500px;
         min-height: 360px;
@@ -164,18 +182,18 @@
           </div>
         </div>
 
-        <div class="nav">
-          <div class="nav-button">
+        <div id="nav">
+          <div class="nav-button char" data-link="0" on-click="navClick">
             chars
           </div>
 
-          <div class="nav-button">
+          <div class="nav-button summ" data-link="1" on-click="navClick">
             summary
           </div>
         </div>
       </div>
 
-      <div class="info">
+      <div id="info" on-scroll="navUpdate">
         <div class="char-boxes">
           <div class="character">
             <img src="https://s.vndb.org/ch/34/68734.jpg">
@@ -185,6 +203,9 @@
           </div>
           <div class="character">
             <img src="https://s.vndb.org/ch/36/68736.jpg">
+          </div>
+          <div class="character">
+            <img src="https://s.vndb.org/ch/35/68735.jpg">
           </div>
           <div class="character">
             <img src="https://s.vndb.org/ch/35/68735.jpg">
@@ -211,11 +232,66 @@ He was able to liven up the shop a bit with the help of others, but his relation
         return "release-box";
       }
 
+      /*
+        int navBusy
+        int charHeight
+        int currPos
+      */
       static get properties()
       {
         return {
 
         };
+      }
+
+      ready()
+      {
+        super.ready();
+
+        this.charHeight=this.$.info.children[0].offsetHeight;
+      }
+
+      navUpdate(e)
+      {
+        if (this.$.info.scrollTop<this.charHeight)
+        {
+          this.setNav(0);
+        }
+
+        else
+        {
+          this.setNav(1);
+        }
+      }
+
+      setNav(pos)
+      {
+        if (pos==this.currPos)
+        {
+          return;
+        }
+
+        this.currPos=pos;
+
+        if (pos==0)
+        {
+          this.$.nav.classList.remove("nav-summ");
+        }
+
+        else
+        {
+          this.$.nav.classList.add("nav-summ");
+        }
+      }
+
+      navClick(e)
+      {
+        this.setNav(e.currentTarget.dataset.link);
+
+        var a=this.$.info.scrollTop;
+        this.$.info.animate({
+          scrollTop:[a,0]
+        },500);
       }
     }
 
