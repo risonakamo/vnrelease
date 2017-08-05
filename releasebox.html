@@ -9,7 +9,7 @@
         color: var(--dark-colour);
       }
 
-      div
+      div,a
       {
         display: inline-block;
         vertical-align: top;
@@ -97,6 +97,11 @@
         color: var(--main-colour);
       }
 
+      .title:hover
+      {
+        opacity: .6;
+      }
+
       .title div
       {
         width: 100%;
@@ -182,20 +187,20 @@
       }
     </style>
 
-    <div class="title">
-      <div class="jp">お家に帰るまでがましまろです</div>
-      <div class="en">Ouchi ni Kaeru made ga Mashimaro Desu</div>
+    <a class="title" href="[[link]]">
+      <div class="jp">[[title]]</div>
+      <div class="en">[[titleEn]]</div>
       <div class="border">
         <div class="border-inside"></div>
       </div>
-    </div>
+    </a>
 
     <div class="release-info">
       <div class="left">
         <div class="image">
-          <img src="https://s.vndb.org/cv/90/31590.jpg">
+          <img src="[[cover]]">
           <div class="dev-info">
-            Marmalade
+            [[dev]]
           </div>
         </div>
 
@@ -213,9 +218,9 @@
       <div id="info" on-scroll="navUpdate">
         <div id="slider">
           <div class="char-boxes">
-            <div class="character">
+            <a href="https://vndb.org/v20622/chars#chars" class="character">
               <img src="https://s.vndb.org/ch/34/68734.jpg">
-            </div>
+            </a>
             <div class="character">
               <img src="https://s.vndb.org/ch/37/68737.jpg">
             </div>
@@ -228,11 +233,7 @@
           </div>
 
           <div class="summary">
-            “Hey, are you all right?”
-
-  Kanon held out her hand to Ryou, who had collapsed on the ground in the park. Left without a home after being kicked out, he was taken in by her and given a place to stay in exchange for working at her pâtisserie, “Marshmallow Tree”. The shop had been very popular before she had become the owner, but now it doesn’t get many customers due to a change in opening hours and the arrival of a famous competitor nearby.
-
-  He was able to liven up the shop a bit with the help of others, but his relationships with them also got more complicated at the same time. Every day is full of chaos, with unexpected events happening one after the other. What will happen to him and the shop? It is the beginning of sweet and fluffy marshmallow days.
+            [[summary]]
           </div>
         </div>
       </div>
@@ -264,6 +265,24 @@
         super.ready();
 
         this.charHeight=this.$.info.children[0].children[0].offsetHeight;
+      }
+
+      loadRelease(data)
+      {
+        this.link=data.link;
+        this.summary=data.summary;
+        this.dev=data.dev;
+        this.title=data.title;
+        this.cover=data.cover;
+        this.titleEn=data.titleEn;
+      }
+
+      genChars(chars)
+      {
+        for (var x=0;x<chars.length;x++)
+        {
+
+        }
       }
 
       //check scroll position of info box and change nav buttons

@@ -17,27 +17,14 @@ function main()
     // };
     // r.send();
 
-    // calHandler.getDay(2017,7,29).then((res)=>{
-    //     for (var x=0;x<res.items.length;x++)
-    //     {
-    //         genRelease(res.items[x]);
-    //     }
-    // });
+    calHandler.getDay(2017,7,29).then((res)=>{
+        for (var x=0;x<res.items.length;x++)
+        {
+            console.log(res.items[x]);
+        }
+    });
 
     // calHandler.getMonth(2017,7).then((res)=>{
     //     console.log(res);
     // });
-}
-
-function genRelease(release)
-{
-    var description=release.description.split("\n");
-
-    if (description.length<2)
-    {
-        return;
-    }
-
-    console.log(description);
-
 }
