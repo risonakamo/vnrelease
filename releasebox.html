@@ -5,6 +5,7 @@
     <style>
       :host
       {
+        display: inline-block;
         width: 800px;
         color: var(--dark-colour);
       }
@@ -19,7 +20,7 @@
       .left
       {
         width: 300px;
-        height: 360px;
+        /*height: 360px;*/
         /*line-height: 360px;*/
       }
 
@@ -155,10 +156,10 @@
 
       #info::-webkit-scrollbar
       {
-        display: none;
+        /*display: none;*/
       }
 
-      #info .char-boxes
+      #char-boxes
       {
         width: 500px;
         padding: 0 0 20px 60px;
@@ -217,19 +218,8 @@
 
       <div id="info" on-scroll="navUpdate">
         <div id="slider">
-          <div class="char-boxes">
-            <a href="https://vndb.org/v20622/chars#chars" class="character">
-              <img src="https://s.vndb.org/ch/34/68734.jpg">
-            </a>
-            <div class="character">
-              <img src="https://s.vndb.org/ch/37/68737.jpg">
-            </div>
-            <div class="character">
-              <img src="https://s.vndb.org/ch/36/68736.jpg">
-            </div>
-            <div class="character">
-              <img src="https://s.vndb.org/ch/35/68735.jpg">
-            </div>
+          <div id="char-boxes">
+
           </div>
 
           <div class="summary">
@@ -263,8 +253,6 @@
       ready()
       {
         super.ready();
-
-        this.charHeight=this.$.info.children[0].children[0].offsetHeight;
       }
 
       loadRelease(data)
@@ -275,13 +263,20 @@
         this.title=data.title;
         this.cover=data.cover;
         this.titleEn=data.titleEn;
+
+        this.genChars(data.char);
+        this.charHeight=this.$.info.children[0].children[0].offsetHeight;
       }
 
       genChars(chars)
       {
         for (var x=0;x<chars.length;x++)
         {
-
+          this.$["char-boxes"].insertAdjacentHTML("beforeend",`
+            <a href="${this.link}chars#chars" class="character">
+              <img src="${chars[x]}">
+            </a>
+          `);
         }
       }
 
