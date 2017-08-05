@@ -140,7 +140,7 @@
       #info .char-boxes
       {
         width: 500px;
-        padding-left: 60px;
+        padding: 0 0 20px 60px;
       }
 
       #info .character
@@ -161,6 +161,7 @@
       {
         width: 500px;
         min-height: 360px;
+        padding: 0 20px 0 20px;
         font-size: 15px;
       }
     </style>
@@ -194,30 +195,32 @@
       </div>
 
       <div id="info" on-scroll="navUpdate">
-        <div class="char-boxes">
-          <div class="character">
-            <img src="https://s.vndb.org/ch/34/68734.jpg">
+        <div id="slider">
+          <div class="char-boxes">
+            <div class="character">
+              <img src="https://s.vndb.org/ch/34/68734.jpg">
+            </div>
+            <div class="character">
+              <img src="https://s.vndb.org/ch/37/68737.jpg">
+            </div>
+            <div class="character">
+              <img src="https://s.vndb.org/ch/36/68736.jpg">
+            </div>
+            <div class="character">
+              <img src="https://s.vndb.org/ch/35/68735.jpg">
+            </div>
+            <div class="character">
+              <img src="https://s.vndb.org/ch/35/68735.jpg">
+            </div>
           </div>
-          <div class="character">
-            <img src="https://s.vndb.org/ch/37/68737.jpg">
-          </div>
-          <div class="character">
-            <img src="https://s.vndb.org/ch/36/68736.jpg">
-          </div>
-          <div class="character">
-            <img src="https://s.vndb.org/ch/35/68735.jpg">
-          </div>
-          <div class="character">
-            <img src="https://s.vndb.org/ch/35/68735.jpg">
-          </div>
-        </div>
 
-        <div class="summary">
-          “Hey, are you all right?”
+          <div class="summary">
+            “Hey, are you all right?”
 
-Kanon held out her hand to Ryou, who had collapsed on the ground in the park. Left without a home after being kicked out, he was taken in by her and given a place to stay in exchange for working at her pâtisserie, “Marshmallow Tree”. The shop had been very popular before she had become the owner, but now it doesn’t get many customers due to a change in opening hours and the arrival of a famous competitor nearby.
+  Kanon held out her hand to Ryou, who had collapsed on the ground in the park. Left without a home after being kicked out, he was taken in by her and given a place to stay in exchange for working at her pâtisserie, “Marshmallow Tree”. The shop had been very popular before she had become the owner, but now it doesn’t get many customers due to a change in opening hours and the arrival of a famous competitor nearby.
 
-He was able to liven up the shop a bit with the help of others, but his relationships with them also got more complicated at the same time. Every day is full of chaos, with unexpected events happening one after the other. What will happen to him and the shop? It is the beginning of sweet and fluffy marshmallow days.
+  He was able to liven up the shop a bit with the help of others, but his relationships with them also got more complicated at the same time. Every day is full of chaos, with unexpected events happening one after the other. What will happen to him and the shop? It is the beginning of sweet and fluffy marshmallow days.
+          </div>
         </div>
       </div>
     </div>
@@ -248,10 +251,11 @@ He was able to liven up the shop a bit with the help of others, but his relation
       {
         super.ready();
 
-        this.charHeight=this.$.info.children[0].offsetHeight;
+        this.charHeight=this.$.info.children[0].children[0].offsetHeight;
       }
 
-      navUpdate(e)
+      //check scroll position of info box and change nav buttons
+      navUpdate()
       {
         if (this.$.info.scrollTop<this.charHeight)
         {
@@ -264,6 +268,8 @@ He was able to liven up the shop a bit with the help of others, but his relation
         }
       }
 
+      //set nav button state
+      //0=chars, 1=summary
       setNav(pos)
       {
         if (pos==this.currPos)
@@ -284,14 +290,21 @@ He was able to liven up the shop a bit with the help of others, but his relation
         }
       }
 
+      //nav button click event, change scrollposition then
+      //updatenav
       navClick(e)
       {
-        this.setNav(e.currentTarget.dataset.link);
+        if (e.currentTarget.dataset.link==1)
+        {
+          this.$.info.scrollTop=this.charHeight;
+        }
 
-        var a=this.$.info.scrollTop;
-        this.$.info.animate({
-          scrollTop:[a,0]
-        },500);
+        else
+        {
+          this.$.info.scrollTop=0;
+        }
+
+        this.navUpdate();
       }
     }
 
