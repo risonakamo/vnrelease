@@ -6,6 +6,7 @@
       :host
       {
         width: 800px;
+        color: var(--dark-colour);
       }
 
       div
@@ -72,6 +73,11 @@
         transition: background-color,color .2s,.2s;
       }
 
+      .nav-button:hover
+      {
+        opacity: .6;
+      }
+
       #nav .char,#nav.nav-summ .summ
       {
         background-color: var(--main-colour);
@@ -88,12 +94,14 @@
       {
         width: 100%;
         margin-bottom: 15px;
+        color: var(--main-colour);
       }
 
       .title div
       {
         width: 100%;
-        padding-left: 10px;
+        /*padding-left: 10px;*/
+        text-align: center;
       }
 
       .title .jp
@@ -108,7 +116,8 @@
         height: 25px;
         line-height: 25px;
         font-size: 17px;
-        padding-left: 30px !important;
+        color: var(--dark-colour);
+        /*padding-left: 30px !important;*/
       }
 
       .title .border
@@ -216,9 +225,6 @@
             <div class="character">
               <img src="https://s.vndb.org/ch/35/68735.jpg">
             </div>
-            <div class="character">
-              <img src="https://s.vndb.org/ch/35/68735.jpg">
-            </div>
           </div>
 
           <div class="summary">
@@ -243,9 +249,8 @@
       }
 
       /*
-        int navBusy
-        int charHeight
-        int currPos
+        int charHeight: max height of charboxes
+        int currPos: 0=char 1=summary
       */
       static get properties()
       {
