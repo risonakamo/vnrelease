@@ -125,8 +125,11 @@
         height: 3px;
         padding: 0;
         /*border-bottom: 1px solid var(--main-colour);*/
-        background: url("yellow-dot.png") repeat-x;
-        background-size: auto 100%;
+        background-color: var(--main-colour);
+        -webkit-mask-image: url("yellow-dot.png");
+        mask-type: alpha;
+        -webkit-mask-size: auto 100%;
+
       }
 
       #info
