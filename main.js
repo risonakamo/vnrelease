@@ -26,7 +26,7 @@ function main()
         {
             release=JSON.parse(res.items[x].description);
             release.titleEn=res.items[x].summary;
-            console.log(release);
+            // console.log(release);
 
             newRbox=new releaseBox();
             rboxes.appendChild(newRbox);
