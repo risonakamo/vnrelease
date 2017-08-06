@@ -1,10 +1,16 @@
 @charset "UTF-8";
 
+@font-face
+{
+    font-family: "roundm-med";
+    src: url("ff1.ttf");
+}
+
 body
 {
     margin: 0;
     font-size: 0;
-    font-family: "roboto slab";
+    font-family: "roboto slab","roundm-med";
 }
 
 p
@@ -23,5 +29,5 @@ release-box
   --main-colour: #eccb02;
   --sub-colour: #5d5e7a;
   --dark-colour: #614432;
-  margin-bottom: 50px;
+  margin-bottom: 75px;
 }

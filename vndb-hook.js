@@ -5,7 +5,7 @@
 
     res.link=window.location.href.slice(0,-11);
     res.title=mainboxes[0].children[1].innerText;
-    res.summary=mainboxes[0].querySelector(".vndesc p").innerText;
+    res.summary=mainboxes[0].querySelector(".vndesc p").innerText.replace(/“|”|"/,`'`);
     res.cover=mainboxes[0].querySelector(".vnimg img").src;
 
     var charimg=mainboxes[2].querySelectorAll(".chardetails img");
