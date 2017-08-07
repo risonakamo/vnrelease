@@ -8,8 +8,9 @@ int currYear;
 int currMonth;
 int currIndex;
 
-void getCurrDay();
-void getNextDay();
+object-promised getCurrDay();
+object-promised getNextDay();
+object-promised getPrevDay();
 
 object-promised getDay(int year,int month,int day);
 object-promised getMonth(int year,int month);

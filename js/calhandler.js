@@ -15,17 +15,23 @@ class _calHandler
 
     getCurrDay()
     {
-        if (!this.eventCache[this.currMonth])
-        {
-            this.getMonth(this.currYear,this.currMonth);
+        return new Promise((ret,rej)=>{
+            if (!this.eventCache[this.currMonth])
+            {
+                this.getMonth(this.currYear,this.currMonth);
 
-            setTimeout(()=>{
-                this.getCurrDay();
-            },500);
-            return;
-        }
+                setTimeout(()=>{
+                    this.getCurrDay().then((s)=>{
+                        ret(s);
+                    });
+                },500);
+            }
 
-        console.log(this.dayCache[this.currIndex]);
+            else
+            {
+                ret(this.dayCache[this.currIndex]);
+            }
+        });
     }
 
     getNextDay()
@@ -43,7 +49,7 @@ class _calHandler
             }
         }
 
-        this.getCurrDay();
+        return this.getCurrDay();
     }
 
     getPrevDay()
@@ -55,7 +61,7 @@ class _calHandler
             this.currIndex=0;
         }
 
-        this.getCurrDay();
+        return this.getCurrDay();
     }
 
     //get events of day

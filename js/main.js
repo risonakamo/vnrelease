@@ -23,11 +23,33 @@ function main()
     //     }
     // });
 
-    calHandler.getCurrDay();
+    calHandler.getCurrDay().then((res)=>{
+        genReleases(res);
+    });
 
     // calHandler.getMonth(2017,7);
 
     // calHandler.getMonth(2017,6);
     // calHandler.getMonth(2017,5);
     // calHandler.getMonth(2017,4);
+}
+
+function genReleases(data)
+{
+    var rboxes=document.querySelector(".rboxes");
+    var release;
+    var newRbox;
+    for (var x in data)
+    {
+        for (var y=0;y<data[x].length;y++)
+        {
+            release=JSON.parse(data[x][y].description);
+            release.titleEn=data[x][y].summary;
+            // console.log(release);
+
+            newRbox=new releaseBox();
+            rboxes.appendChild(newRbox);
+            newRbox.loadRelease(release);
+        }
+    }
 }

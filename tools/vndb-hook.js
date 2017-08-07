@@ -3,16 +3,39 @@
 
     var res={};
 
-    res.link=window.location.href.slice(0,-11);
+    if (window.location.href.slice(-11)=="chars#chars")
+    {
+        res.link=window.location.href.slice(0,-11);
+    }
+
     res.title=mainboxes[0].children[1].innerText;
     res.summary=mainboxes[0].querySelector(".vndesc p").innerText.replace(/“|”|"/,`'`);
     res.cover=mainboxes[0].querySelector(".vnimg img").src;
 
-    var charimg=mainboxes[2].querySelectorAll(".chardetails img");
-    res.char=[];
+    // var charimg=mainboxes[2].querySelectorAll(".chardetails img");
+
+    var charimg=document.querySelectorAll("h1");
+
     for (var x=0;x<charimg.length;x++)
     {
-        res.char.push(charimg[x].src);
+        if (charimg[x].innerText=="Main characters")
+        {
+            charimg=charimg[x].parentElement.querySelectorAll(".chardetails img");
+            res.char=[];
+        }
+    }
+
+    if (!res.char)
+    {
+        res.char=[];
+    }
+
+    else
+    {
+        for (var x=0;x<charimg.length;x++)
+        {
+            res.char.push(charimg[x].src);
+        }
     }
 
     var details=mainboxes[0].querySelectorAll("tr");
