@@ -4,6 +4,7 @@ class _calHandler
     {
         this.calID="https://www.googleapis.com/calendar/v3/calendars/jasu68g67q9v29gniq5dofd2us%40group.calendar.google.com/";
         this.apiKey="key=AIzaSyB834HLMUh8rf8kteswPmGuIDtdbV5B8WY";
+        this.eventCache={};
     }
 
     //get events of day
@@ -36,6 +37,7 @@ class _calHandler
         });
     }
 
+    //requires NON INDEX month value
     getMonth(year,month)
     {
         return new Promise((ret,rej)=>{
@@ -58,17 +60,42 @@ class _calHandler
             }
 
             var r=new XMLHttpRequest();
-            r.open("GET",this.calID+`events?maxResults=50&orderBy=startTime&singleEvents=true&timeMax=${nextYear}-${nextMonth}-01T00%3A00%3A00Z&timeMin=${year}-${month}-01T00%3A00%3A00Z&`+this.apiKey);
+            r.open("GET",this.calID+`events?maxResults=50&orderBy=startTime&singleEvents=true&timeMax=${nextYear}-${nextMonth}-01T00%3A00%3A00Z&timeMin=${year}-${month}-03T00%3A00%3A00Z&`+this.apiKey);
 
             r.onreadystatechange=()=>{
                 if (r.readyState==4)
                 {
-                    // console.log(JSON.parse(r.response));
-                    ret(JSON.parse(r.response));
+                    var data=JSON.parse(r.response);
+                    this.cacheResponse(month,data.items);
+                    ret(data);
                 }
             };
 
             r.send();
         });
+
+    }
+
+    cacheResponse(month,data)
+    {
+        for (var x=0,l=data.length;x<l;x++)
+        {
+            if (!this.eventCache[month])
+            {
+                this.eventCache[month]={};
+            }
+
+            if (!this.eventCache[month][data[x].start.date])
+            {
+                this.eventCache[month][data[x].start.date]=[data[x]];
+            }
+
+            else
+            {
+                this.eventCache[month][data[x].start.date].push(data[x]);
+            }
+        }
+
+        console.log(this.eventCache);
     }
 }
