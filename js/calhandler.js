@@ -5,6 +5,57 @@ class _calHandler
         this.calID="https://www.googleapis.com/calendar/v3/calendars/jasu68g67q9v29gniq5dofd2us%40group.calendar.google.com/";
         this.apiKey="key=AIzaSyB834HLMUh8rf8kteswPmGuIDtdbV5B8WY";
         this.eventCache={};
+        this.dayCache=[];
+
+        var d=new Date();
+        this.currYear=d.getFullYear();
+        this.currMonth=d.getMonth()+1;
+        this.currIndex=0;
+    }
+
+    getCurrDay()
+    {
+        if (!this.eventCache[this.currMonth])
+        {
+            this.getMonth(this.currYear,this.currMonth);
+
+            setTimeout(()=>{
+                this.getCurrDay();
+            },500);
+            return;
+        }
+
+        console.log(this.dayCache[this.currIndex]);
+    }
+
+    getNextDay()
+    {
+        this.currIndex++;
+
+        if (this.currIndex>=this.dayCache.length)
+        {
+            this.currMonth--;
+
+            if (this.currMonth<=0)
+            {
+                this.currYear--;
+                this.currMonth=12;
+            }
+        }
+
+        this.getCurrDay();
+    }
+
+    getPrevDay()
+    {
+        this.currIndex--;
+
+        if (this.currIndex<0)
+        {
+            this.currIndex=0;
+        }
+
+        this.getCurrDay();
     }
 
     //get events of day
@@ -66,7 +117,7 @@ class _calHandler
                 if (r.readyState==4)
                 {
                     var data=JSON.parse(r.response);
-                    this.cacheResponse(month,data.items);
+                    this.cacheResponse(parseInt(month),data.items);
                     ret(data);
                 }
             };
@@ -96,6 +147,26 @@ class _calHandler
             }
         }
 
-        console.log(this.eventCache);
+        var days=Object.keys(this.eventCache[month]);
+        days.sort();
+
+        var day;
+        for (var x=days.length-1;x>=0;x--)
+        {
+            day={};
+            day[days[x]]=this.eventCache[month][days[x]];
+            this.dayCache.push(day);
+        }
+
+        // var day;
+        // for (var x in this.eventCache[month])
+        // {
+        //     day={};
+        //     day[x]=this.eventCache[month][x];
+        //     this.dayCache.push(day);
+        // }
+
+        // console.log(this.eventCache);
+        // console.log(this.dayCache);
     }
 }

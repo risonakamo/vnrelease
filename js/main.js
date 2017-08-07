@@ -23,9 +23,11 @@ function main()
     //     }
     // });
 
-    calHandler.getMonth(2017,7).then((res)=>{
-        // console.log(res.items);
-    });
+    calHandler.getCurrDay();
 
-    calHandler.getMonth(2017,6);
+    // calHandler.getMonth(2017,7);
+
+    // calHandler.getMonth(2017,6);
+    // calHandler.getMonth(2017,5);
+    // calHandler.getMonth(2017,4);
 }
