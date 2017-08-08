@@ -1,11 +1,12 @@
 window.onload=main;
 
 var calHandler;
+var rboxes;
 
 function main()
 {
     calHandler=new _calHandler();
-
+    rboxes=document.querySelector(".rboxes");
     // var rboxes=document.querySelector(".rboxes");
 
     // var release;
@@ -32,11 +33,18 @@ function main()
     // calHandler.getMonth(2017,6);
     // calHandler.getMonth(2017,5);
     // calHandler.getMonth(2017,4);
+
+    var backButton=document.querySelector(".nav-button");
+    backButton.addEventListener("click",(e)=>{
+        rboxes.innerHTML="";
+        calHandler.getNextDay().then((res)=>{
+            genReleases(res);
+        });
+    });
 }
 
 function genReleases(data)
 {
-    var rboxes=document.querySelector(".rboxes");
     var release;
     var newRbox;
     for (var x in data)
