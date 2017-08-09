@@ -1,0 +1,12 @@
+{
+    "manifest_version":2,
+    "name":"vnhook",
+    "version":"0.0.1",
+    "description":"grab data for vn-releases",
+
+    "permissions":["https://vndb.org/*","tabs","storage"],
+
+    "browser_action":{
+        "default_popup":"popup.html"
+    }
+}
